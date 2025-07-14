@@ -1,0 +1,1 @@
+El usuario quiere una página donde pueda subir un LISP con nombre, descripción y código, y también poder editar o eliminar cada uno.

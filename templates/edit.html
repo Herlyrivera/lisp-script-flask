@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editar LISP</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+  <main class="container">
+    <article>
+      <hgroup>
+        <h2>Editar: {{ item.nombre }}</h2>
+        <h3>Modifica el nombre, descripción o código</h3>
+      </hgroup>
+      <form method="POST" class="grid">
+        <input type="text" name="nombre" value="{{ item.nombre }}" required>
+        <input type="text" name="descripcion" value="{{ item.descripcion }}" required>
+        <textarea name="codigo" rows="10" required>{{ codigo }}</textarea>
+        <button type="submit">Guardar cambios</button>
+        <a href="/" role="button" class="secondary">Cancelar</a>
+      </form>
+    </article>
+  </main>
+</body>
+</html>
