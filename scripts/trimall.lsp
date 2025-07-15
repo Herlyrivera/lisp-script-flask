@@ -1,0 +1,15 @@
+(defun c:TRIMALL ( / ss)
+  (vl-load-com)
+  (prompt "\nSelecciona los objetos a recortar (ENTER para todos): ")
+  (setq ss (ssget))
+  (if (not ss)
+    (setq ss (ssget "_X"))
+  )
+  (if ss
+    (progn
+      (command "_.TRIM" "_ALL" "" ss "")
+    )
+    (prompt "\nNo se encontraron objetos para recortar.")
+  )
+  (princ)
+)
