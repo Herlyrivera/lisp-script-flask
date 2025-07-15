@@ -1,61 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DATABANK MKS LISP</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-  <style>
-    pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
-    .code-block { margin-bottom: 3rem; }
-  </style>
-</head>
+<html>
+<head><title>Scripts</title></head>
 <body>
-  <nav class="container-fluid">
-    <ul><li><strong>DATABANK MKS LISP</strong></li></ul>
-    <ul>
-      <li><a href="#">Inicio</a></li>
-      <li><a href="#subir">Subir LISP</a></li>
-    </ul>
-  </nav>
-  <main class="container">
-    <div class="grid">
-      <section>
-        <hgroup>
-          <h2>LISP subidos</h2>
-          <h3>Edita, elimina o agrega más</h3>
-        </hgroup>
-        {% for b in bloques %}
-        <div class="code-block">
-          <h3>{{ loop.index }}. {{ b.nombre }}</h3>
-          <p><em>{{ b.descripcion }}</em></p>
-          <pre><code>{{ b.codigo }}</code></pre>
-          <p>
-            <a href="/edit/{{ b.id }}" role="button">Editar</a>
-            <a href="/delete/{{ b.id }}" role="button" class="secondary">Eliminar</a>
-          </p>
-        </div>
-        {% endfor %}
-      </section>
+  <h1>Lista de Scripts</h1>
+  <form method="post">
+    <input name="nombre" placeholder="Nombre"><br>
+    <input name="descripcion" placeholder="Descripción"><br>
+    <textarea name="codigo" placeholder="Código LISP"></textarea><br>
+    <button type="submit">Guardar</button>
+  </form>
+  <hr>
+  {% for b in bloques %}
+    <div>
+      <h2>{{ b.nombre }}</h2>
+      <p>{{ b.descripcion }}</p>
+      <pre>{{ b.codigo }}</pre>
+      <a href="{{ url_for('edit', item_id=b.id) }}">Editar</a>
+      <a href="{{ url_for('delete', item_id=b.id) }}">Eliminar</a>
     </div>
-  </main>
-
-  <section id="subir" class="container">
-    <article>
-      <hgroup>
-        <h2>Sube tu propio LISP</h2>
-        <h3>Formulario real con nombre, descripción y código</h3>
-      </hgroup>
-      <form method="POST" class="grid">
-        <input type="text" name="nombre" placeholder="Nombre del LISP" required>
-        <input type="text" name="descripcion" placeholder="Descripción del LISP" required>
-        <textarea name="codigo" placeholder="Pega aquí el código LISP..." rows="10" required></textarea>
-        <button type="submit">Subir código</button>
-      </form>
-    </article>
-  </section>
-  <footer class="container">
-    <small><a href="#">Privacidad</a> • <a href="#">Términos</a></small>
-  </footer>
+  {% endfor %}
 </body>
 </html>
